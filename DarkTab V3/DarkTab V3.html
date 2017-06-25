@@ -1,0 +1,71 @@
+<!-- UI -->
+
+<!doctype html>
+<meta charset="utf-8">
+<title>DarkTab V3</title>
+
+<!-- Link the CSS stylesheet: -->
+<link rel="stylesheet", href="style.css">
+
+<!-- Link scripts: -->
+<script src="ColorEngine.js"></script>
+<script src="ElementManager.js"></script>
+<script src="SearchEngine.js"></script>
+<script src="Client.js"></script>
+<script src="Clock.js"></script>
+
+<div id="main">
+    <h1 id="header">DarkTab V3</h1>
+    <br>
+    <br>
+    <input id="form", onkeypress="searchHandle(event)", placeholder="Search:", spellcheck="false">
+</div>
+
+<!-- UI Script -->
+<script>
+    
+    //Color Changing:
+    var R = 255;
+    var G = 255;
+    var B = 255;
+    
+    var colorUpdate = window.setInterval(updateColor, 15);
+    
+    function updateColor() {
+        R--;
+        G--;
+        ColorEngine_changeForeColor("header", R, G, B);
+        
+        //If red or green is equal to 100:
+        if (R == 100 || G == 100) {
+            window.clearInterval(colorUpdate);
+            return;
+        }
+    }
+    
+    //Search:
+    function searchHandle(e) {
+        //If the 'enter' key is pressed:
+        if(e.keyCode === 13) {
+            e.preventDefault(); // Ensure it is only this code that runs.
+            
+            var search = document.getElementById("form").value;
+            
+            //If the search is a valid URL:
+            if (Client_validURL(search)) {
+                window.location = search;
+                return;
+            }
+            
+            SearchEngine_searchGoogle(search);
+        }
+    }
+    
+    //Time Changing:
+    window.setInterval(updateTime, 1000);
+    
+    function updateTime() {
+        var time = Clock_getTime();
+        ElementManager_changeText("header", "DarkTab V3 - " + time);
+    }
+</script>

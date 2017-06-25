@@ -1,0 +1,24 @@
+/* style.css */
+/* Contains the style for the UI. */
+
+body {
+    background-color: rgb(35, 35, 35);
+}
+
+#main {
+    text-align: center;
+}
+
+#header {
+    color: rgb(255, 255, 255);
+    font-family: arial;
+    text-align: center;
+}
+
+#form {
+    font-size: 19px;
+    width: 400px;
+    color: rgb(150, 150, 150);
+    border: none;
+    background-color: rgb(27, 27, 27);
+}
